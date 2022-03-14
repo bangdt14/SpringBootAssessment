@@ -10,22 +10,6 @@ const createHTMLList = (index, title, description, targetDate) =>
 </tr>
 `;
 
-const formatDate = (inputDate) => {
-
-    const year = new Date(inputDate).getFullYear();
-    const month = new Date(inputDate).getMonth() + 1;
-    const day = new Date(inputDate).getDate();
-
-    return twoDigit(day) + "/" + twoDigit(month) + "/" + year;
-}
-
-const twoDigit = (monthDate) => {
-    if (monthDate <= 9) {
-        return "0" + monthDate;
-    }
-    else return monthDate;
-}
-
 class TodoController
 {
     constructor()
@@ -98,9 +82,7 @@ class TodoController
         {
             const item = this._items[i];            //assign the individual item to the variable
 
-            //const strDate = formatDate(item.targetDate);
-
-            const itemHTML = createHTMLList(i, item.title, item.description, formatDate(item.targetDate));
+            const itemHTML = createHTMLList(i, item.title, item.description, item.targetDate);
 
             HTMLList.push(itemHTML);
         }

@@ -1,6 +1,6 @@
 package org.generation.SpringBootAssessment.controller.dto;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class ItemDTO {
 

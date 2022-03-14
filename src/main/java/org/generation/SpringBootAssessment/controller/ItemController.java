@@ -4,10 +4,10 @@ import org.generation.SpringBootAssessment.controller.dto.ItemDTO;
 import org.generation.SpringBootAssessment.repository.entity.Item;
 import org.generation.SpringBootAssessment.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
+import java.io.IOException;
+import java.sql.Date;
 
 @RestController
 @RequestMapping("/item")
@@ -28,8 +28,7 @@ public class ItemController {
     @PostMapping("/add")
     public void save(@RequestParam(name="title", required = true) String title,
                      @RequestParam(name="description", required = true) String description,
-                     @RequestParam("targetDate")
-                         @DateTimeFormat(pattern = "yyyy-MM-dd") Date targetDate) {
+                     @RequestParam(name="targetDate") Date targetDate) throws IOException {
 
         ItemDTO itemDTO = new ItemDTO(title, description, targetDate);
         itemService.save(new Item(itemDTO));
