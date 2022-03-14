@@ -1,0 +1,37 @@
+package org.generation.SpringBootAssessment.controller;
+
+import org.generation.SpringBootAssessment.controller.dto.ItemDTO;
+import org.generation.SpringBootAssessment.repository.entity.Item;
+import org.generation.SpringBootAssessment.service.ItemService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
+
+@RestController
+@RequestMapping("/item")
+public class ItemController {
+    final ItemService itemService;
+
+    public ItemController(@Autowired ItemService itemService) {
+        this.itemService = itemService;
+    }
+
+    @CrossOrigin
+    @GetMapping("/all")
+    public Iterable<Item> getItems() {
+        return itemService.all();
+    }
+
+    @CrossOrigin
+    @PostMapping("/add")
+    public void save(@RequestParam(name="title", required = true) String title,
+                     @RequestParam(name="description", required = true) String description,
+                     @RequestParam("targetDate")
+                         @DateTimeFormat(pattern = "yyyy-MM-dd") Date targetDate) {
+
+        ItemDTO itemDTO = new ItemDTO(title, description, targetDate);
+        itemService.save(new Item(itemDTO));
+    }
+}
