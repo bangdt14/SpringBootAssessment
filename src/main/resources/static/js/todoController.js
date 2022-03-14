@@ -30,7 +30,7 @@ class TodoController
 {
     constructor()
     {
-        this._items = [];       //create an array to store the details of todo items
+        this._items = [];       //create an array to store the details of items
     }
 
     //method to add the items into the array
