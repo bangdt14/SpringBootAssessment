@@ -6,7 +6,7 @@ import org.generation.SpringBootAssessment.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
+
 import java.sql.Date;
 
 @RestController
@@ -28,7 +28,7 @@ public class ItemController {
     @PostMapping("/add")
     public void save(@RequestParam(name="title", required = true) String title,
                      @RequestParam(name="description", required = true) String description,
-                     @RequestParam(name="targetDate") Date targetDate) throws IOException {
+                     @RequestParam(name="targetDate") Date targetDate) {
 
         ItemDTO itemDTO = new ItemDTO(title, description, targetDate);
         itemService.save(new Item(itemDTO));
